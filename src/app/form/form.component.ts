@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class FormComponent {
 
+  constructor(private formBuilder: FormBuilder) {}
+
+  formPlayer = this.formBuilder.group({
+    add : ['', Validators.required],
+    
+  })
 }
