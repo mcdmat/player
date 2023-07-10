@@ -11,4 +11,11 @@ export class PlaylistComponent {
   onDelete() {
     this.deleteMusic.emit(this.music);
   }
+  playAudio(){
+    let audio = new Audio();
+    audio.src = this.music;
+    audio.load();
+    audio.play();
+  }
+
 }

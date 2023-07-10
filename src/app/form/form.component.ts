@@ -7,22 +7,22 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  // @Output() onEvent: EventEmitter<string> = new EventEmitter<string>();
   musicArray: string[] = [];
+
   constructor(private formBuilder: FormBuilder) {}
 
   formPlayer = this.formBuilder.group({
     add: ['file', Validators.required],
-    select : ['']
+    select: [''],
   });
 
   addMusic(music: any) {
     this.musicArray.push(music);
+    this.formPlayer.reset({add: 'file'}); 
   }
 
   deleteMusic(event: string) {
-this.musicArray=this.musicArray.filter(item => event !== item);
-  console.log(this.musicArray);
-  
+    this.musicArray = this.musicArray.filter((item) => event !== item);
+    console.log(this.musicArray);
   }
 }

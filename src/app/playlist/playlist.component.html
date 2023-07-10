@@ -1,8 +1,10 @@
 <div>
-  <h4>{{music}}</h4>
-<button>Jouer</button>
-<button>Télécharger</button>
-<button (click)="onDelete()">Supprimer</button>
+  <h4>{{ music }}</h4>
+  <!-- <audio [src]="music"></audio> -->
+  <button (click)="playAudio()">Jouer</button>
+  <!-- <a [href]=music></a> -->
+  <button>Télécharger</button>
+  <button (click)="onDelete()">Supprimer</button>
 
-  <hr>
+  <hr />
 </div>

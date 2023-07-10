@@ -8,10 +8,30 @@
       <option value="url">URL</option>
     </select>
   </label>
-  <label for="select" >Sélectionner un fichier audio 
-    <input type="file" accept="audio/*" *ngIf="(formPlayer.controls['add'].value)=='file'" formControlName="select">
-    <input type="text" *ngIf="(formPlayer.controls['add'].value)=='url'" formControlName="select">
+  <label for="select"
+    >Sélectionner un fichier audio
+    <input
+      type="file"
+      accept="audio/*"
+      *ngIf="formPlayer.controls['add'].value == 'file'"
+      formControlName="select"
+    />
+    <input
+      type="text"
+      *ngIf="formPlayer.controls['add'].value == 'url'"
+      formControlName="select"
+    />
   </label>
-<input type="button" value="Ajouter" (click)="addMusic(formPlayer.controls['select'].value)"></form>
+  <input
+    type="button"
+    value="Ajouter"
+    (click)="addMusic(formPlayer.controls['select'].value)"
+  />
+</form>
 <h2>Liste de lecture</h2>
-<app-playlist *ngFor="let music of musicArray" [music]="music" (deleteMusic)="deleteMusic($event)"></app-playlist>
+<p *ngIf="musicArray.length === 0">Votre liste de lecture est vide</p>
+<app-playlist
+  *ngFor="let music of musicArray"
+  [music]="music"
+  (deleteMusic)="deleteMusic($event)"
+></app-playlist>
