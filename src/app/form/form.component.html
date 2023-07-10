@@ -4,12 +4,12 @@
   <label for="add"
     >Mode d'ajout
     <select name="add" id="add" formControlName="add">
-      <option value="file" selected>Fichier local</option>
+      <option value="file">Fichier local</option>
       <option value="url">URL</option>
     </select>
   </label>
-  <label for="select">Sélectionner un fichier audio 
-    <input type="file" >
-    <input type="text">
+  <label for="select" >Sélectionner un fichier audio 
+    <input type="file" accept="audio/*" *ngIf="(formPlayer.controls['add'].value)=='file'">
+    <input type="text" *ngIf="(formPlayer.controls['add'].value)=='url'">
   </label>
 </form>

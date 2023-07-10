@@ -11,7 +11,7 @@ export class FormComponent {
   constructor(private formBuilder: FormBuilder) {}
 
   formPlayer = this.formBuilder.group({
-    add : ['', Validators.required],
-    
+    add : [ 'file', Validators.required],
+    // select : ['']
   })
 }
