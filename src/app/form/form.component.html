@@ -1,5 +1,3 @@
-<h1>Lecteur de musique</h1>
-<h2>Ajouter une musique</h2>
 <form [formGroup]="formPlayer">
   <label for="add"
     >Mode d'ajout
@@ -13,25 +11,20 @@
     <input
       type="file"
       accept="audio/*"
-      *ngIf="formPlayer.controls['add'].value == 'file'"
+      *ngIf="formPlayer.controls['add'].value === 'file'"
       formControlName="select"
+      (change)="inputChange($event)"
     />
     <input
       type="text"
-      *ngIf="formPlayer.controls['add'].value == 'url'"
+      *ngIf="formPlayer.controls['add'].value === 'url'"
       formControlName="select"
     />
   </label>
   <input
     type="button"
     value="Ajouter"
-    (click)="addMusic(formPlayer.controls['select'].value)"
+    (click)="addTrack()"
   />
 </form>
-<h2>Liste de lecture</h2>
-<p *ngIf="musicArray.length === 0">Votre liste de lecture est vide</p>
-<app-playlist
-  *ngFor="let music of musicArray"
-  [music]="music"
-  (deleteMusic)="deleteMusic($event)"
-></app-playlist>
+

@@ -1,1 +1,7 @@
-<app-form></app-form>
+<h1>Lecteur de musique</h1>
+<h2>Ajouter une musique</h2>
+<app-form (addMusic)="addMusicFromService($event)" ></app-form>
+<h2>Liste de lecture</h2>
+<p *ngIf="ms.musicArray.length === 0">Votre liste de lecture est vide</p>
+<app-track (deleteMusic)="deleteMusicInService($event)" (playMusic)="playMusicInService($event)"></app-track>
+<app-player ></app-player>

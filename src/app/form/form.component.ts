@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,22 +7,36 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  musicArray: string[] = [];
+  blobItem: any;
+  objectToPush: any;
+  @Output() addMusic = new EventEmitter<string | null>();
+  @Output() addNameMusic = new EventEmitter<string | null>();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private readonly formBuilder: FormBuilder) {}
 
   formPlayer = this.formBuilder.group({
     add: ['file', Validators.required],
     select: [''],
   });
 
-  addMusic(music: any) {
-    this.musicArray.push(music);
-    this.formPlayer.reset({add: 'file'}); 
-  }
+  inputChange(event: any) {
+    this.blobItem = {
+      blobUrl: URL.createObjectURL(event.target.files[0]),
+      musicName: event.target.files[0].name,
+    };
 
-  deleteMusic(event: string) {
-    this.musicArray = this.musicArray.filter((item) => event !== item);
-    console.log(this.musicArray);
+    return this.blobItem;
+  }
+  addTrack() {
+    if (this.formPlayer.controls.add.value === 'url') {
+      this.objectToPush = {
+        blobUrl: this.formPlayer.controls['select'].value,
+        musicName: this.formPlayer.controls['select'].value,
+      };
+    } else {
+      this.objectToPush = this.blobItem;
+    }
+    this.addMusic.emit(this.objectToPush);
+    this.formPlayer.reset({ add: 'file' });
   }
 }
